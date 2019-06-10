@@ -1,0 +1,57 @@
+@import '../../styles/variables.scss';
+@font-face{
+    font-family: "Hellix-Medium";
+    src: url("../../assets/fonts/Hellix-Medium.woff") format('truetype');
+}
+.animation{
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    position: relative;
+}
+.freshbutton--wrapper{
+    position: relative;
+}
+.freshbutton{
+    width: 27px;
+    height: 27px;
+    border-radius: 20px;
+    position: absolute;
+    left: 22px;
+    top: -48px;
+    &--top{
+        width: 70px;
+        height: 70px;
+        background-color: white;
+        border-radius: 35px;
+    }
+    &__title{
+        opacity: 0.6;
+        margin-top: 0.5rem;
+        font-family: "Hellix-Medium";	
+        font-size: 1.125rem;
+        font-weight: 500;	
+        line-height: 21px;
+        color: $lighterfont;
+        width: 70px;
+        text-align: center;
+    }
+}
+.freshyellowbutton{
+    background-color: $yellow;
+    width: 90px;
+    height: 90px;
+    border-radius: 35px;
+}
+// .greybutton{
+//     background-color: grey;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 25px;
+// }
+// .yellowbutton{
+//     background-color: yellow;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 25px;
+// }

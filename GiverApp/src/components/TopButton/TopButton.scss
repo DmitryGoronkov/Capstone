@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+@font-face{
+    font-family: "Hellix-Medium";
+    src: url("../../assets/fonts/Hellix-Medium.woff") format('truetype');
+}
+.button{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    &__title{
+        margin-top:0.5rem;
+        opacity: 0.6;
+        font-family: "Hellix-Medium";	
+        font-size: 1.125rem;
+        font-weight: 500;	
+        line-height: 21px;
+        color: $lighterfont;
+    }
+    &__icon{
+        position: absolute;
+        top: 37px;
+        left: 16px;
+        height: 38px;	width: 38px;
+    }
+}
+button{
+    border:none;
+}
+button:focus{
+    outline: none;
+}
+
+.greybutton{
+    background-color: white;
+    width: 4.375rem;
+    height: 4.375rem;
+    border-radius: 3rem;
+    box-shadow: 0 1px 7px 0 rgba(224,225,225,0.52);
+}
+.yellowbutton{
+    background-color:$yellow;
+    width: 4.375rem;
+    height: 4.375rem;
+    border-radius: 3rem;
+    box-shadow: 0 1px 7px 0 rgba(224,225,225,0.52);
+}
+.anim{
+    background-image: url(../../icons8-checkmark.svg);
+    position: relative;
+    left: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+  }

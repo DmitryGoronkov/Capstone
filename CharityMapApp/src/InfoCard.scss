@@ -1,0 +1,115 @@
+@import './variables.scss';
+
+@font-face{
+  font-family: "Hellix-Medium";
+  src: url("./assets/fonts/Hellix-Medium.woff") format('truetype');
+}
+.tag{
+    width: 100px;
+    height: 40px;
+    background-color: red;
+}
+
+.image{
+    width: 50px;
+}
+.bold{
+  font-weight: bold;
+}
+.infoCard{
+  // display: flex;
+  // flex-direction: column;
+  // // align-items: space-between;
+  // height: 230px;
+  &__tags{
+    width: 150px;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  &__image{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 2rem;
+  }
+  &__icons{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-around;
+    &__item{
+      width: 20px;
+      height: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+    }
+
+  }
+  &__top{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__button{
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,0);
+    border:none;
+  
+    &__icon{
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__button:focus{
+    outline:none;
+  }
+  &__date{
+    align-self: flex-end;
+  }
+  &__open{
+    justify-self: end;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: white;
+    border:1px solid black;
+  }
+}
+.menu-item {
+    font-family: "Hellix-Medium";
+    display: flex;
+
+    width: 150px;
+    height: 200px;
+    border-radius: 26px;
+    background-color: white;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0.13);
+    
+    
+    padding: 1rem;
+    // margin: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+  }
+  .menu-item-wrapper {
+    border: 1px transparent solid;
+    border-radius: 26px;
+    margin-right: 1rem;
+    outline: none;
+  }
+  .menu-item-wrapper.active {
+    background-color: $yellow;
+    width:  180px;
+    height: 230px;
+    border-radius: 26px;
+    outline: none;
+    margin-right: 1rem;
+  }
+  .menu-item.active {
+    background-color: $yellow;
+    border-radius: 26px;
+    outline: none;
+    margin-right: 1rem;
+  }

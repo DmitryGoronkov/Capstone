@@ -1,0 +1,44 @@
+@font-face{
+    font-family: "Hellix-Medium";
+    src: url("./assets/fonts/Hellix-Medium.woff") format('truetype');
+}
+.landing{
+    width: 100vw;
+    height: 100vh;
+    &__logo{
+        width: 250px;
+        height: 100px;
+        margin: 100px 60px;
+    }
+    &__image{
+        width: 250px;
+    }
+    &__button{
+        &--wrap{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        &:focus{
+            background-color: #FFD100;
+            box-shadow: 0 0 4px 0 rgba(255,209,0,0.64);
+            outline: none;
+        }
+        height: 144px;
+        width: 144px;
+        padding: 30px;
+        border-radius: 70px;	
+        background-color: #FFFFFF;	
+        box-shadow: 0 0 4px 0 rgba(0,0,0,0.11);;
+    }
+    &__labels{
+        &--wrap{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        width: 144px;
+        text-align: center;
+        font-family: "Hellix-Medium";
+        font-size: 2rem;
+        color: rgba(0,0,0,0.65);
+    }
+}
