@@ -7,7 +7,8 @@ import InfoCard from './InfoCard.js'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import Triangle from './triangle';
 import Chart2 from './Chart2';
-import back from './assets/svg/icons8-back2.svg'
+import back from './assets/svg/icons8-back2.svg';
+import {Link} from "react-router-dom";
 const key = "AIzaSyC2DtGQafS7ey_uIJHawxlOx1QrsGF55qs"
 const Marker = ({ text, onClick, imageId }) => <>
 
@@ -302,7 +303,7 @@ class SimpleMap extends Component {
                     <div className="clicked__location">Get it at:<span style={{fontWeight:"bold"}}>{currentCard.location}</span></div>
                     <div className="clicked__time">Pick up by: <span style={{fontWeight:"bold"}}>{date}</span> from <span style={{fontWeight:"bold"}}>{min}</span> till <span style={{fontWeight:"bold"}}> {max}</span> </div>
                 </div>
-                <button className="clicked__button" >Confirm</button>
+                <Link to="/posted" ><button className="clicked__button" >Confirm</button></Link>
         
         </div>
 
