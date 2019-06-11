@@ -85,7 +85,8 @@ class SimpleMap extends Component {
         lng: -79.4009
       },
       zoom: 11,
-      menuItems: {}
+      menuItems: {},
+      sortedBy: "all"
     };
     onSelect = key => {
       this.setState({ selected: key });
@@ -107,7 +108,7 @@ class SimpleMap extends Component {
       return dateA - dateB;
     });
     this.setState({filteredCards: newArray, menuItems: Menu(newArray, selected, this.clickMe, this.onClickCard)}, ()=> console.timeEnd());
-    
+    this.refs.all.focus();
   }
   async componentDidMount(){
     const {data:cards} = await axios.get('http://localhost:8080/');
@@ -142,7 +143,7 @@ class SimpleMap extends Component {
     let filteredArray = reversedArray.filter(item=>(item.produce.weight>0))
     let selected = filteredArray[0].name;
     this.setState({filteredCards:filteredArray, selected:selected, menuItems: Menu(filteredArray, selected, this.clickMe, this.onClickCard)})
-
+    
   }
   
   onClickCooked=(array)=>{
@@ -231,6 +232,13 @@ class SimpleMap extends Component {
         max = `${currentCard.time.max}:00`
         
       }
+      if (this.state.sortedBy === "all"){
+
+      }
+      let allb = "notfocusedb";
+      let produceb = "notfocusedb"
+      let cookedb = "notfocusedb";
+      let bakedb = "focusedb"
     return (<>
       {!this.state.clicked && <div className="background">
           <div className="map">
@@ -258,10 +266,10 @@ class SimpleMap extends Component {
           {/* <button onClick={this.clickme}>ClickMe</button> */}
           <div className="sort-wrap">
           {/* <button className="sort" onClick={()=>{this.onClickDate(this.state.cards)}}>SORT BY DATE</button> */}
-          <button className="sort" onClick={this.onClickAll}>View All</button>
-          <button className="sort" onClick={()=>{this.onClickProduce(this.state.cards)}}>Produce</button>
-          <button className="sort" onClick={()=>{this.onClickCooked(this.state.cards)}}>Cooked</button>
-          <button className="sort" onClick={()=>{this.onClickBaked(this.state.cards)}}>Baked</button>
+          <button ref="all" className={`${allb}, sort`} onClick={this.onClickAll}>View All</button>
+          <button className={`${produceb}, sort`} onClick={()=>{this.onClickProduce(this.state.cards)}}>Produce</button>
+          <button className={`${cookedb}, sort`} onClick={()=>{this.onClickCooked(this.state.cards)}}>Cooked</button>
+          <button className={`${bakedb}, sort`} onClick={()=>{this.onClickBaked(this.state.cards)}}>Baked</button>
           </div>
           <div>
             <div></div>

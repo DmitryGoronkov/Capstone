@@ -264,15 +264,22 @@ class App extends React.Component {
   }
   onChange = date => this.setState({ date })
   onClickDate = () => {
+
     this.setState({dateSelect:true, customColor: "#FFD100", todayColor: "white", tomorrowColor: "white", datePopulated: true })
   }
   onClickToday = () => {
+   let con = new Date()
+   let con2 = con.getDate();
+   console.log(con2);
+    
     this.setState({date: new Date(), customColor: "white", todayColor: "#FFD100", tomorrowColor: "white", dateSelect: false, datePopulated: true})
   }
   onClickTomorrow = () => {
     const today = new Date();
     let tomorrow = new Date();
     tomorrow.setDate(today.getDate()+1);
+    let con = tomorrow.getDate();
+    console.log(con);
     this.setState({date: tomorrow , customColor: "white", tomorrowColor: "#FFD100", todayColor: "white", dateSelect: false, datePopulated: true})
   }
   onClickBack = () =>{

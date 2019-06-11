@@ -49,6 +49,12 @@
   border-radius: 40px;	
   box-shadow: 0 0 7px 0 rgba(224,225,225,0.59);
   background-color:#F2F2F2;
+  &:focus{
+    outline:none;
+    color: white;
+    border: none;
+    background-color: rgba(0,0,0,0.4);	
+  }
   &-wrap{
     margin: 0.5rem 2rem;;
     display: flex;

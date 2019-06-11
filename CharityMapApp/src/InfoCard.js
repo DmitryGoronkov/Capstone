@@ -66,9 +66,11 @@ export default class InfoCard extends React.Component{
         }
         let date = new Date(this.props.date);
         let month = date.getUTCMonth() + 1;
-        let day = date.getUTCDate();
+        let day = date.getDate();
+        
         let today = new Date();
-        let todayday = today.getUTCDate();
+        let todayday = today.getDate();
+        console.log(`card: ${this.props.text}. Card's day is ${day}. Today's day is ${todayday}`)
         let newday = "";
         let newmonth = "";
         if (day === todayday){
@@ -86,7 +88,7 @@ export default class InfoCard extends React.Component{
         }
 
         return(<div className={`menu-item ${this.props.selected ? 'active' : ''}`}>
-            <div className="infoCard">
+            <div className="infoCard">{this.props.text}
             <div className="infoCard__top">
                 <img className="infoCard__image" src={`http://localhost:8080/${this.props.cardImage}.png`}></img>
                 <button className="infoCard__button" onClick={this.props.clickme}><img className="infoCard__button__icon" src={search}/></button>

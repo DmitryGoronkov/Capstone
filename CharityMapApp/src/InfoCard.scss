@@ -79,24 +79,22 @@
 }
 .menu-item {
     font-family: "Hellix-Medium";
-    display: flex;
-
+    // display: flex;
+    
     width: 150px;
     height: 200px;
     border-radius: 26px;
     background-color: white;
     box-shadow: 0 0 16px 0 rgba(0,0,0,0.13);
     
-    
     padding: 1rem;
-    // margin: 5px 10px;
     user-select: none;
     cursor: pointer;
   }
   .menu-item-wrapper {
     border: 1px transparent solid;
     border-radius: 26px;
-    margin-right: 1rem;
+    // margin-right: 3rem;
     outline: none;
   }
   .menu-item-wrapper.active {
@@ -105,11 +103,13 @@
     height: 230px;
     border-radius: 26px;
     outline: none;
-    margin-right: 1rem;
+    // margin-right: 3rem;
+    // margin-right: 1rem;
   }
   .menu-item.active {
     background-color: $yellow;
     border-radius: 26px;
     outline: none;
-    margin-right: 1rem;
+    // margin-right: 3rem;
+    // margin-right: 1rem;
   }
