@@ -14,6 +14,7 @@ import cooked from './assets/svg/icons8-porridge.svg';
 import backbutton from './assets/svg/icons8-back.svg';
 import posed from 'react-pose';
 import posted from './assets/Item_posted.png';
+import data from './assets/data'
 class App extends React.Component {
 
 
@@ -22,21 +23,7 @@ class App extends React.Component {
     thirdpage: false,
       file: null,
       imageId: "",
-      items: [
-            'Arrowroot',
-            'Artichoke',
-            'Arugula',
-            "Asparagus",
-            "Bamboo Shoots",
-            "Beans, Green",
-            "Beets",
-            "Belgian Endive",
-            "Bitter Melon",
-            "Bok Choy",
-            "Broccoli",
-            "Brussel Sprouts",
-            "Cabbage, Green",
-            ],
+      items: data,
       suggestions: [],
       tags: [],
       text: "",
@@ -72,15 +59,16 @@ class App extends React.Component {
       },
       readyColor: "giveItButtonGrey"
   }
+
   fileSubmit = (event) => {
     let form = event.target
-    console.log(form);
     var blob = form.files[0].slice(0, form.files[0].size, 'image/png'); 
     let newFile = null;
     let imageId = shortId.generate();
     newFile = new File([blob], `${imageId}.png`, {type: 'image/png'});
     this.setState({file: newFile, imageId: imageId})
   }
+
   formSubmission = event => {
     if(this.state.file){
     event.preventDefault();
@@ -92,44 +80,48 @@ class App extends React.Component {
       }
     })
     this.thirdPageSubmit(this.state.file.name);
-  }}
+    }}
+
   onKeyUp=(e)=>{
-        if (e.which === 32 || e.which === 13){
-          let input = e.target.value;
-          if (input.length === 0 || input[0] === "") return;
-          if (input === " "){
-            e.target.value="";
-            return;
-          }
-          this.setState({
-              tags: [...this.state.tags, input,], text: ""
-          })
+    if (e.which === 32 || e.which === 13){
+      let input = e.target.value;
+        if (input.length === 0 || input[0] === "") return;
+        if (input === " "){
+          e.target.value="";
+          return;
+        }
+        this.setState({
+          tags: [...this.state.tags, input,], text: ""
+        })
           e.target.value = "";
         }
   }
+
   onDeleteTag = (tag) => {
         var tags = this.state.tags.filter((t) => {
             return(t!==tag );
         })
         this.setState({tags:tags});
-        }
+  }
+
   saveWeight = () => {
     if (this.state.sectionClicked === 1) {
-      var produce = { ...this.state.produce };
-      produce.weight = this.state.value;
-      this.setState({ produce });
+        var produce = { ...this.state.produce };
+        produce.weight = this.state.value;
+        this.setState({ produce });
     }
     if (this.state.sectionClicked === 2) {
-      var cooked = { ...this.state.cooked };
-      cooked.weight = this.state.value;
-      this.setState({ cooked });
+        var cooked = { ...this.state.cooked };
+        cooked.weight = this.state.value;
+        this.setState({ cooked });
     }
     if (this.state.sectionClicked === 3) {
-      var baked = { ...this.state.baked };
-      baked.weight = this.state.value;
-      this.setState({ baked });
+        var baked = { ...this.state.baked };
+        baked.weight = this.state.value;
+        this.setState({ baked });
     }
   }
+
   onClickProduce = () => {
     this.saveWeight();
     this.setState({
@@ -137,6 +129,7 @@ class App extends React.Component {
       sectionClicked: 1,
     })
   }
+
   onClickCooked = () => {
     this.saveWeight();
     this.setState({
@@ -144,6 +137,7 @@ class App extends React.Component {
       value: this.state.cooked.weight
     })
   }
+
   onClickBaked = () => {
     this.saveWeight();
     this.setState({
@@ -151,6 +145,7 @@ class App extends React.Component {
       value: this.state.baked.weight
     })
   }
+
   onClickFreshness = (item) => {
     if (this.state.sectionClicked === 1){
       let produce = { ...this.state.produce };
@@ -168,6 +163,7 @@ class App extends React.Component {
       this.setState({ baked})
     }
   }
+
   setPageFreshness = () => {
     let freshness = 0;
     if (this.state.sectionClicked === 1){
@@ -181,6 +177,7 @@ class App extends React.Component {
     }
     return (freshness)
   }
+
   componentDidUpdate(){
     if (this.state.change){
       if (this.state.sectionClicked === 1){
@@ -233,16 +230,19 @@ class App extends React.Component {
       this.setState({baked})
     }
   }
+
   firstPageSubmit = () =>{
     if (this.state.produce.populated || this.state.cooked.populated || this.state.baked.populated){
       this.setState({firstpage: false, secondpage: true})
     }
   }
+
   secondPageSubmit = () =>{
     if (this.state.datePopulated && this.state.location){
       this.setState({secondpage: false, thirdpage: true})
     }
   }
+
   thirdPageSubmit = (filename) =>{
     if (this.state.file && this.state.tags){
           axios.post(`http://localhost:8080/`, {
@@ -255,33 +255,30 @@ class App extends React.Component {
             coordinates: this.state.coordinates,
             tags: this.state.tags,
             imageId: this.state.imageId
-        })
-            .then (response => {
-                this.setState({itemPosted:true, thirdpage:false})
-            
             })
-          }
+                .then (response => {
+                    this.setState({itemPosted:true, thirdpage:false})
+                })
+    }
   }
-  onChange = date => this.setState({ date })
-  onClickDate = () => {
 
+  onChange = date => this.setState({ date })
+
+  onClickDate = () => {
     this.setState({dateSelect:true, customColor: "#FFD100", todayColor: "white", tomorrowColor: "white", datePopulated: true })
   }
+
   onClickToday = () => {
-   let con = new Date()
-   let con2 = con.getDate();
-   console.log(con2);
-    
     this.setState({date: new Date(), customColor: "white", todayColor: "#FFD100", tomorrowColor: "white", dateSelect: false, datePopulated: true})
   }
+
   onClickTomorrow = () => {
     const today = new Date();
     let tomorrow = new Date();
     tomorrow.setDate(today.getDate()+1);
-    let con = tomorrow.getDate();
-    console.log(con);
     this.setState({date: tomorrow , customColor: "white", tomorrowColor: "#FFD100", todayColor: "white", dateSelect: false, datePopulated: true})
   }
+
   onClickBack = () =>{
     if (this.state.secondpage){
       this.setState({secondpage: false, firstpage: true})
@@ -290,6 +287,7 @@ class App extends React.Component {
       this.setState({thirdpage: false, secondpage: true})
     }
   }
+
   onTextChanged = (e) => {
     const value = e.target.value;
     let suggestions = [];
@@ -299,10 +297,12 @@ class App extends React.Component {
     }
     this.setState({suggestions, text: value });
   }
+
   suggestionSelected (value) {
     this.setState({text: value, suggestions: []})
     this.refs.inputText.focus();
   }
+
   renderSuggestions (){
     let { suggestions } = this.state;
     if (suggestions.length === 0) {
@@ -320,7 +320,7 @@ class App extends React.Component {
             {suggestions.map((item) => <li onClick={()=> this.suggestionSelected(item)}>{item}</li>)}
         </ul>
     )
-}
+  }
   
   
   render() {
@@ -337,7 +337,6 @@ class App extends React.Component {
     })
     let freshness = this.setPageFreshness();
     let btn_class = "giveItButton giveItButton--Grey"
-    console.log(this.state.location.length)
     if (this.state.firstpage && this.state.produce.populated || this.state.cooked.populated || this.state.baked.populated){
       btn_class = "giveItButton giveItButton--Yellow"
     }
@@ -442,39 +441,29 @@ class App extends React.Component {
           <div className="secondPage__places">
           <h3 className="secondPage__places__title">Pick up at</h3>
           <div><AlgoliaPlaces
-      placeholder={this.state.location}
- 
-      options={{
-        appId: 'plLKFXVBBE2L',
-        apiKey: '4e56120d9529767425094ba6cf55d226',
-        language: 'en',
-        countries: ['ca'],
-      }}
- 
-      onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => 
-        this.setState({location:suggestion.value, coordinates:suggestion.latlng})
-      
-      
-      }
-        
-
-      onSuggestions={({ rawAnswer, query, suggestions }) => 
-        console.log('Fired when dropdown receives suggestions. You will receive the array of suggestions that are displayed.')}
- 
-      onCursorChanged={({ rawAnswer, query, suggestion, suggestonIndex }) => 
-        console.log('Fired when arrows keys are used to navigate suggestions.')}
- 
-      onClear={() => 
-        console.log('Fired when the input is cleared.')}
- 
-      onLimit={({ message }) => 
-        console.log('Fired when you reached your current rate limit.')}
- 
-      onError={({ message }) => 
-        console.log('Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit.')}
-    />
-  </div></div>
-           
+                    placeholder={this.state.location}
+                    options={{
+                      appId: 'plLKFXVBBE2L',
+                      apiKey: '4e56120d9529767425094ba6cf55d226',
+                      language: 'en',
+                      countries: ['ca'],
+                    }}
+                    onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => 
+                      this.setState({location:suggestion.value, coordinates:suggestion.latlng})
+                    }
+                    onSuggestions={({ rawAnswer, query, suggestions }) => 
+                          console.log('Fired when dropdown receives suggestions. You will receive the array of suggestions that are displayed.')}
+                    onCursorChanged={({ rawAnswer, query, suggestion, suggestonIndex }) => 
+                          console.log('Fired when arrows keys are used to navigate suggestions.')}
+                    onClear={() => 
+                          console.log('Fired when the input is cleared.')}
+                    onLimit={({ message }) => 
+                          console.log('Fired when you reached your current rate limit.')}
+                    onError={({ message }) => 
+                          console.log('Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit.')}
+                  />
+          </div>
+        </div>
            <button className={btn_class} onClick={this.secondPageSubmit}>Confirm</button>
         </div>
         }
@@ -497,22 +486,12 @@ class App extends React.Component {
                   onSubmit={this.formSubmission}>
                   <input className="thirdpage__photo"  onChange={this.fileSubmit} id="file" type="file" name="sampleFile" />
                   <label className="thirdpage__label" for="file">
-                  <figure className="thirdpage__figure">                  <Checkmark className="thirdpage__anim" pose={this.state.file ? 'visible' : 'hidden'}></Checkmark> 
-<svg className="thirdpage__svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 2c1.654 0 3 1.346 3 3v14c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-14c0-1.654 1.346-3 3-3h14zm0-2h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-7 6c-3.313 0-6 2.687-6 6s2.687 6 6 6 6-2.687 6-6-2.687-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4c2.205 0 4 1.794 4 4s-1.795 4-4 4zm7-10c-.553 0-1-.448-1-1s.447-1 1-1 1 .448 1 1-.447 1-1 1z"/></svg></figure>
+                      <figure className="thirdpage__figure">                  <Checkmark className="thirdpage__anim" pose={this.state.file ? 'visible' : 'hidden'}></Checkmark> 
+                      <svg className="thirdpage__svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 2c1.654 0 3 1.346 3 3v14c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-14c0-1.654 1.346-3 3-3h14zm0-2h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-7 6c-3.313 0-6 2.687-6 6s2.687 6 6 6 6-2.687 6-6-2.687-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4c2.205 0 4 1.794 4 4s-1.795 4-4 4zm7-10c-.553 0-1-.448-1-1s.447-1 1-1 1 .448 1 1-.447 1-1 1z"/></svg></figure>
                   </label>
-                      
-                      <button style={{marginLeft: "0"}} type="submit" className={btn_class}>Post it</button>
-                  
+                  <button style={{marginLeft: "0"}} type="submit" className={btn_class}>Post it</button>
             </form> 
             <div style={{display:overlay}} class="submit-overlay"></div>    
-            
-
-
-
-
-
-
-
         </div>}
         {this.state.itemPosted &&  <div className="itemPosted"><a href="http://localhost:3000" ><img className="itemPosted__image" src={posted}/></a></div>}
     </>
@@ -521,18 +500,3 @@ class App extends React.Component {
 }
 
 export default App;
-//https://github.com/wojtekmaj/react-date-picker/blob/master/README.md date picker
-//https://www.npmjs.com/package/react-input-range
-// axios.post(`http://localhost:8080/`, {
-//       produce: this.state.produce,
-//       cooked: this.state.cooked,
-//       baked: this.state.baked,
-//       date: this.state.date,
-//       time: this.state.doubleValue,
-//       location: this.state.location,
-//       tags: this.state.tags
-//   })
-//       .then (response => {
-//           alert("Post added");
-      
-//       })

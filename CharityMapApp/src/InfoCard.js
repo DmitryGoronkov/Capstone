@@ -88,7 +88,7 @@ export default class InfoCard extends React.Component{
         }
 
         return(<div className={`menu-item ${this.props.selected ? 'active' : ''}`}>
-            <div className="infoCard">{this.props.text}
+            <div className="infoCard">
             <div className="infoCard__top">
                 <img className="infoCard__image" src={`http://localhost:8080/${this.props.cardImage}.png`}></img>
                 <button className="infoCard__button" onClick={this.props.clickme}><img className="infoCard__button__icon" src={search}/></button>
