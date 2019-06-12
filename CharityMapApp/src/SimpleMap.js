@@ -250,7 +250,7 @@ class SimpleMap extends Component {
               }}
               center={this.state.center}
               zoom={this.state.zoom}
-              defaultZoom={10}
+              defaultZoom={13}
             >
               {this.state.filteredCards.map((card,index) => (
 

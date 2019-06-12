@@ -51,9 +51,9 @@
   background-color:#F2F2F2;
   &:focus{
     outline:none;
-    color: white;
-    border: none;
-    background-color: rgba(0,0,0,0.4);	
+    // color: white;
+    // border: none;
+    // background-color: rgba(0,0,0,0.4);	
   }
   &-wrap{
     margin: 0.5rem 2rem;;
@@ -66,15 +66,17 @@
   height: 667px;
 }
 .arrow-prev{
-  width: 20px;
+  width: 13px;
   height: 20px;
-  border-radius: 10px;
-  background-color:#D8D8D8;;
+  border-radius: 15px;
+  padding: 10px;
+  background-color:#D8D8D8;
 }
 .arrow-next{
-  width: 20px;
+  width: 13px;
   height: 20px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 15px;
   background-color: #D8D8D8;
 }
 .scroll-menu-arrow{
