@@ -111,7 +111,7 @@ class SimpleMap extends Component {
     this.refs.all.focus();
   }
   async componentDidMount(){
-    const {data:cards} = await axios.get('http://localhost:8080/');
+    const {data:cards} = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}`);
     let cardsWItems = [];
     cards.map((card, index) => (
       cardsWItems[index]={name: `item${index+1}`, ...card  }))
@@ -298,7 +298,7 @@ class SimpleMap extends Component {
       </div>}
       {this.state.clicked && <div className="clicked">
         <img onClick={this.onClickBack} src={back} className="clicked__back" alt="back"></img>
-        <img className="clicked__image" src={`http://localhost:8080/${currentCard.imageId}.png`}></img>
+        <img className="clicked__image" src={`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}/${currentCard.imageId}.png`}></img>
         <div className="clicked__main">
                 <div className="clicked__list">{list}</div>
                 <div className="clicked__chart"><Chart2 produceWeight={currentCard.produce.weight}
