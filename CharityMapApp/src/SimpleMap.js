@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 const key = "AIzaSyC2DtGQafS7ey_uIJHawxlOx1QrsGF55qs"
 const Marker = ({ text, onClick, imageId }) => <>
 
-        <button  onClick={onClick} className="marker"><img className="marker__image" src={`http://localhost:8080/${imageId}.png`}></img><Triangle/></button>
+        <button  onClick={onClick} className="marker"><img className="marker__image" src={`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}/${imageId}.png`}></img><Triangle/></button>
         
         
       </>;
