@@ -1,0 +1,21 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "First run the server. Then please run CharityMapApp on localhost:3000. Then run GiverApp on localhost:3001. Open CharityMapApp on http://localhost:3000 and enjoy the app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm install && node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryGoronkov/Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryGoronkov/Capstone/issues"
+  },
+  "homepage": "https://github.com/DmitryGoronkov/Capstone#readme"
+}
