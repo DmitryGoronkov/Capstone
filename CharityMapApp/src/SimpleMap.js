@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AlgoliaPlaces from 'algolia-places-react';
 import GoogleMapReact from 'google-map-react';
 import './simplemap.scss';
 import axios from 'axios';
@@ -9,27 +8,13 @@ import Triangle from './triangle';
 import Chart2 from './Chart2';
 import back from './assets/svg/icons8-back2.svg';
 import {Link} from "react-router-dom";
-const key = "AIzaSyC2DtGQafS7ey_uIJHawxlOx1QrsGF55qs"
+const key = "Add your key here"
 const Marker = ({ text, onClick, imageId }) => <>
-
-        <button  onClick={onClick} className="marker"><img className="marker__image" src={`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}/${imageId}.png`}></img><Triangle/></button>
-        
-        
-      </>;
-         
-      
-
-
-
+  <button  onClick={onClick} className="marker"><img className="marker__image" alt="markerimage" src={`http://localhost:8080/${imageId}.png`}></img><Triangle/></button>
+</>;
 export const Menu = (list, selected, clickMe, onClickCard) =>
-
-
-
-
-
 list.map(card => {
   const {name} = card;
-
   return <InfoCard text={name} key={name} selected={selected}
                     location = {card.location}
                     cardImage = {card.imageId}
@@ -37,19 +22,12 @@ list.map(card => {
                     produce = {card.produce}
                     cooked = {card.cooked}
                     baked = {card.baked}
-                    location = {card.location}
                     tags = {card.tags}
                     time = {card.time}
                     clickme={()=>(clickMe(card.coordinates.lat,card.coordinates.lng))}
                     onClickCard={onClickCard}/>
             
 });
-              // list.map(card => {
-              //   const {name} = card;
-              // return <InfoCard text={name} key={name} selected={selected}
-                    
-
-
 const Arrow = ({ text, className }) => {
                 return (
                   <div
@@ -58,15 +36,13 @@ const Arrow = ({ text, className }) => {
                 );
               };
 
-              const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
-              const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
-               
-              const selected = 'item1';
+const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
+const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
+const selected = 'item1';
 
 
 
 class SimpleMap extends Component {
-  // static defaultProps = {
     state = {
       alignCenter: true,
       clickWhenDrag: false,
@@ -111,7 +87,7 @@ class SimpleMap extends Component {
     this.refs.all.focus();
   }
   async componentDidMount(){
-    const {data:cards} = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}`);
+    const {data:cards} = await axios.get(`http://localhost:8080`);
     let cardsWItems = [];
     cards.map((card, index) => (
       cardsWItems[index]={name: `item${index+1}`, ...card  }))
@@ -123,9 +99,6 @@ class SimpleMap extends Component {
     })
     let arraySorted = this.state.cards;
     this.sortByDate(arraySorted);
-    
-  
-      
   }
   onClickAll= () =>{
     let newArray = this.state.cards;
@@ -153,7 +126,7 @@ class SimpleMap extends Component {
           return 1
         } else return -1
     
-      })
+    })
     let reversedArray = newArray.reverse();
     let filteredArray = reversedArray.filter(item=>(item.cooked.weight>0))
     let selected = filteredArray[0].name;
@@ -182,12 +155,8 @@ class SimpleMap extends Component {
     const {
       alignCenter,
       clickWhenDrag,
-      hideArrows,
-      dragging,
       hideSingleArrow,
       translate,
-      transition,
-      wheel
     } = this.state;
     const { selected } = this.state;
     const itemsCount = this.state.cards.length;
@@ -198,8 +167,7 @@ class SimpleMap extends Component {
     let min = '';
     let max = '';
     if(currentCard && currentCard.hasOwnProperty('tags')){
-    
-        for (let i=0; i<currentCard.tags.length; i++){
+      for (let i=0; i<currentCard.tags.length; i++){
             if (currentCard.tags[i]){
                 if (i===0){
                     list=list+currentCard.tags[0];
@@ -285,38 +253,30 @@ class SimpleMap extends Component {
             selected={selected}
             translate={translate}
             alignCenter={alignCenter}
-            // scrollToSelected={true}
             dragging={false}
             clickWhenDrag={clickWhenDrag}
             wheel={false}
             data={menu}
             arrowLeft={ArrowLeft}
             arrowRight={ArrowRight}
-            selected={selected}
             scrollToSelected={true}
         />
       </div>}
       {this.state.clicked && <div className="clicked">
         <img onClick={this.onClickBack} src={back} className="clicked__back" alt="back"></img>
-        <img className="clicked__image" src={`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}/${currentCard.imageId}.png`}></img>
+        <img className="clicked__image" alt="imagedontation" src={`http://localhost:8080/${currentCard.imageId}.png`}></img>
         <div className="clicked__main">
                 <div className="clicked__list">{list}</div>
                 <div className="clicked__chart"><Chart2 produceWeight={currentCard.produce.weight}
                                             cookedWeight={currentCard.cooked.weight}
                                             bakedWeight={currentCard.baked.weight}
-                                            
-                                            
                                             ></Chart2></div>
                 <div className="clicked--bottomwrap">
                     <div className="clicked__location">Get it at:<span style={{fontWeight:"bold"}}>{currentCard.location}</span></div>
                     <div className="clicked__time">Pick up by: <span style={{fontWeight:"bold"}}>{date}</span> from <span style={{fontWeight:"bold"}}>{min}</span> till <span style={{fontWeight:"bold"}}> {max}</span> </div>
                 </div>
                 <Link to="/posted" ><button className="clicked__button" >Confirm</button></Link>
-        
-        </div>
-
-
-
+      </div>
       </div>}
       
     </>

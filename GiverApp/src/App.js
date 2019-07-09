@@ -201,7 +201,7 @@ class App extends React.Component {
       produce.populated = true;
       this.setState({produce})
     }
-    if (this.state.produce.populated && this.state.produce.weight == 0 ){
+    if (this.state.produce.populated && this.state.produce.weight === 0 ){
       let produce = { ...this.state.produce };
       produce.populated = false;
       produce.freshness = 0;
@@ -212,7 +212,7 @@ class App extends React.Component {
       cooked.populated = true;
       this.setState({cooked})
     }
-    if (this.state.cooked.populated && this.state.cooked.weight == 0 ){
+    if (this.state.cooked.populated && this.state.cooked.weight === 0 ){
       let cooked = { ...this.state.cooked };
       cooked.populated = false;
       cooked.freshness = 0;
@@ -223,7 +223,7 @@ class App extends React.Component {
       baked.populated = true;
       this.setState({baked})
     }
-    if (this.state.baked.populated && this.state.baked.weight == 0 ){
+    if (this.state.baked.populated && this.state.baked.weight === 0 ){
       let baked = { ...this.state.baked };
       baked.populated = false;
       baked.freshness = 0;
@@ -410,9 +410,9 @@ class App extends React.Component {
         </div>
         <h1 className="freshness__title">How fresh is it?</h1>
           <div className="freshness__buttons">
-          <FreshButton title="fresh" item={1} func={this.onClickFreshness} freshness={freshness} title="Fresh"></FreshButton>
-          <FreshButton title="medium" item={2} func={this.onClickFreshness} freshness={freshness} title="Medium"></FreshButton>
-          <FreshButton title="run!" item={3} func={this.onClickFreshness} freshness={freshness} title="Run!"></FreshButton>
+          <FreshButton title="fresh" item={1} func={this.onClickFreshness} freshness={freshness} ></FreshButton>
+          <FreshButton title="medium" item={2} func={this.onClickFreshness} freshness={freshness} ></FreshButton>
+          <FreshButton title="run!" item={3} func={this.onClickFreshness} freshness={freshness} ></FreshButton>
           </div>
        <button className={btn_class} onClick={this.firstPageSubmit}> <span>Give it</span> </button>
       </div>}
@@ -443,8 +443,8 @@ class App extends React.Component {
           <div><AlgoliaPlaces
                     placeholder={this.state.location}
                     options={{
-                      appId: 'plLKFXVBBE2L',
-                      apiKey: '4e56120d9529767425094ba6cf55d226',
+                      appId: 'Your Id',
+                      apiKey: 'Your Key',
                       language: 'en',
                       countries: ['ca'],
                     }}
@@ -493,7 +493,7 @@ class App extends React.Component {
             </form> 
             <div style={{display:overlay}} class="submit-overlay"></div>    
         </div>}
-        {this.state.itemPosted &&  <div className="itemPosted"><a href="http://localhost:3000" ><img className="itemPosted__image" src={posted}/></a></div>}
+        {this.state.itemPosted &&  <div className="itemPosted"><a href="http://localhost:3000" ><img className="itemPosted__image" alt="imageDonation" src={posted}/></a></div>}
     </>
     );
   }

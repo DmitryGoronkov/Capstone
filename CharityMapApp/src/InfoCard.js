@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Chart2 from './Chart2';
 import './InfoCard.scss';
 import apple from './assets/svg/icons8-apple.svg';
 import bread from './assets/svg/icons8-bread.svg';
@@ -90,17 +89,17 @@ export default class InfoCard extends React.Component{
         return(<div className={`menu-item ${this.props.selected ? 'active' : ''}`}>
             <div className="infoCard">
             <div className="infoCard__top">
-                <img className="infoCard__image" src={`${process.env.REACT_APP_BACKEND_SERVER || "http://localhost:8080"}/${this.props.cardImage}.png`}></img>
-                <button className="infoCard__button" onClick={this.props.clickme}><img className="infoCard__button__icon" src={search}/></button>
-                <button className="infoCard__button" onClick={this.props.onClickCard}><img className="infoCard__button__icon" src={open}></img></button>
+                <img className="infoCard__image" alt="donationImage" src={`http://localhost:8080/${this.props.cardImage}.png`}></img>
+                <button className="infoCard__button" onClick={this.props.clickme}><img className="infoCard__button__icon"  alt="icon" src={search}/></button>
+                <button className="infoCard__button" onClick={this.props.onClickCard}><img className="infoCard__button__icon"  alt="icon" src={open}></img></button>
                 
             </div>
             <div className="infoCard__tags">{list}</div>
             <div className="infoCard__weight">{weight}</div>
             <div className="infoCard__icons">
-                <img className="infoCard__icons__item" style={{backgroundColor: applecolor}} src={apple}></img>
-                <img className="infoCard__icons__item" style={{backgroundColor: porridgecolor}} src={porridge}></img>
-                <img className="infoCard__icons__item" style={{backgroundColor: breadcolor}} src={bread}></img>
+                <img className="infoCard__icons__item"  alt="ProduceImage" style={{backgroundColor: applecolor}} src={apple}></img>
+                <img className="infoCard__icons__item"  alt="CookedImage" style={{backgroundColor: porridgecolor}} src={porridge}></img>
+                <img className="infoCard__icons__item"  alt="BakedImage" style={{backgroundColor: breadcolor}} src={bread}></img>
             
             </div>
             <div className="infoCard__date">Pick up by <span className="bold">{date} </span></div>

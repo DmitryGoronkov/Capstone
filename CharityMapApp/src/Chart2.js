@@ -1,4 +1,3 @@
-import Chart from "react-apexcharts";
 import React, { Component } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 export default class Chart2 extends React.Component{
