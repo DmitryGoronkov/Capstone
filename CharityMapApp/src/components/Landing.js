@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './assets/logo.png';
+import logo from '../assets/logo.png';
 import './landing.scss';
-import vendor from './assets/svg/icons8-small_business_2.svg'
-import hands from './assets/svg/icons8-connectivity_and_help.svg'
+import vendor from '../assets/svg/icons8-small_business_2.svg'
+import hands from '../assets/svg/icons8-connectivity_and_help.svg'
 import {Link} from "react-router-dom"
 export default class Landing extends React.Component{
     render(){

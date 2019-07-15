@@ -6,7 +6,7 @@ import InfoCard from './InfoCard.js'
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import Triangle from './triangle';
 import Chart2 from './Chart2';
-import back from './assets/svg/icons8-back2.svg';
+import back from '../assets/svg/icons8-back2.svg';
 import {Link} from "react-router-dom";
 const key = "Add your key here"
 const Marker = ({ text, onClick, imageId }) => <>

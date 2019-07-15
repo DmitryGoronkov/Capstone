@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './InfoCard.scss';
-import apple from './assets/svg/icons8-apple.svg';
-import bread from './assets/svg/icons8-bread.svg';
-import porridge from './assets/svg/icons8-porridge.svg';
-import search from './assets/icons8-human-research-program-64.png';
-import open from './assets/svg/open-book.svg'
+import apple from '../assets/svg/icons8-apple.svg';
+import bread from '../assets/svg/icons8-bread.svg';
+import porridge from '../assets/svg/icons8-porridge.svg';
+import search from '../assets/icons8-human-research-program-64.png';
+import open from '../assets/svg/open-book.svg'
 const green = "rgba(105,240,174,0.5)";
 const orange = "rgba(255,160,0,0.5)";
 const red = "rgba(255,61,0,0.5)";
