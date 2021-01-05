@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "algolia-places-react": "^1.4.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-date-picker": "^7.5.1",
